@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CF Assessment Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1em;
+        }
+
+        section {
+            text-align: center;
+            margin: 50px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            margin: 10px;
+        }
+
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+{% include './headerHtml.html'%}
+    <header>
+        <h1>CF Assessment Page</h1>
+    </header>
+    <section>
+        <form action="/Results" method="POST" id="myForm" align="left">
+        {% csrf_token %}
+        <input type="hidden" value="Calculate" name="action" id="action">
+            <p> Enter the Monthly Consumption for the following Parameters </p>
+        <table border="0" align="center">
+
+        {% for question in question_list%}
+            <!-- <tr><td>Category</td></tr>-->
+
+            {%if question.Qcategory != "" %}
+            <tr><td ><b><u>{{question.Qcategory}}</u></b><p/></td>
+            <td></td></tr>
+            {%endif%}
+            <tr>
+                <td></td>
+                <td>
+                {{question.Qdesc}} :
+                </td>
+                <td>
+                     <input type="tel"  name="PRANA:{{question.Qid}}" value="{{question.value}}"> {{question.Qunit}}<br><br>
+                </td>
+            </tr>
+        {%endfor%}
+        </table>
+        <!--
+        <label for="country">Country:</label>
+        <select id="country" name="country">
+            <option value="USA">United States of America</option>
+            <option value="UK">United Kingdom</option>
+            <option value="IND" selected>India</option >
+            <option value="AUS">Australia</option>
+        </select><br><br>
+        -->
+
+        <button style="height:35px;width:200px" onclick="document.getElementById("myForm").submit();">Calculate</button>
+
+        {% if final_score %}
+            {{final_score}} Kg of CO2 per month
+            <br/>
+            <input type="hidden" value="{{final_score}}" name="final_score_displayed">
+            <button align="left" style="height:35px;width:200px" onclick= "document.getElementById('action').value='Save';document.getElementById('myForm').submit();">Save</button>
+
+        {% endif %}
+
+        {% if savedFlag %}
+            CF Score Saved.<a href='/viewAssessment'>View History</a>
+        {% endif %}
+        </form>
+
+    </section>
+
+    <script>
+        function confirmCancel() {
+            var result = confirm("Are you sure?");
+            if (result) {
+                location.href = '';
+            }
+        }
+
+        function showSavePopup() {
+            alert("Valid for XX days");
+            location.href = '';
+        }
+    </script>
+
+</body>
+
+</html>

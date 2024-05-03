@@ -1,0 +1,19 @@
+<Table align=right>
+    <tr>
+        <td><font  color="white">
+
+            {% if request.session.user_id != '' %}
+                Welcome {{request.session.user_id}}. <a href="/logout">Logout</a>
+            {% else %}
+                <a href="/login">Login</a>
+            {% endif %}
+            <label id="home-lable"></label>
+            <script>
+                if (document.title != 'Home')
+                    document.getElementById("home-lable").innerHTML = "<a href='/home'>Home</a>"
+            </script>
+
+
+        </font></td>
+    </tr>
+</Table>

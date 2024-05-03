@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1em;
+        }
+
+        section {
+            text-align: center;
+            margin: 50px;
+        }
+
+        p {
+            font-size: 18px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            margin: 10px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Result</h1>
+    </header>
+
+    <section>
+        <p>This is the page for the assessment result.</p>
+        <p>Your score is {{final_score}}</p>
+        <table border="1" align="center">
+            <tr><td>Category</td><td>Score</td></tr>
+        </table>
+        <!-- Add content or data related to the assessment result here -->
+        <button onclick="location.href='SubcompanyHome'">Home</button>
+        <button onclick="">Download</button>
+        <button onclick="location.href=''">Offsetting options</button>
+    </section>
+
+    <script>
+        function showDownloadPopup() {
+            alert("Download status: Downloading...");
+            // You can customize the download logic here
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1em;
+        }
+
+        section {
+            text-align: center;
+            margin: 50px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            margin: 10px;
+        }
+
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Login Page</h1>
+    </header>
+    <section>
+        <form action="/loginProcess" method="POST" id="myForm" align="left">
+        {% csrf_token %}
+
+        <table border="0" align="left">
+
+            <tr>
+                <td>User Id: </td><td><input type="tel"  name="user_id" ></td>
+            </tr>
+            <tr>
+                <td> Password: </td><td><input type="password"  name="password" ></td>
+            </tr>
+            <tr>
+                <td>
+                    <button onclick="document.getElementById("myForm").submit();">Login</button>
+                </td>
+                <td></td>
+            </tr>
+
+        </table>
+            <br>
+
+
+
+    </form>
+    </section>
+
+
+</body>
+
+</html>

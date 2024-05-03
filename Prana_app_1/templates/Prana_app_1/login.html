@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../static/signin.css">
+    <title>Login - PRANA Carbon Footprint Calculator</title>
+</head>
+
+<body>
+    <section>
+        <form action="/loginProcess" method="POST" id="myForm">
+             {% csrf_token %}
+            <a style="color:red">{{msg}}</a>
+            <h1>SIGN IN</h1>
+            <label for="">
+                <input type="text" name="user_id" id="user_id">
+                <span>USER ID</span>
+            </label>
+
+            <label for="">
+                <input type="password" name="password" id="password">
+                <span>PASSWORD</span>
+            </label>
+
+            <div class="termofuse">
+                <span>
+                    If you don't have an account,
+                    <a href="">Contact Prana Admin</a>
+                </span>
+            </div>
+
+            <input type="submit" class="submit" onclick="myFunction();" value="SIGN IN">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </input>
+
+            <p class="space-or">or</p>
+
+            <button type="button" id="signinButton" class="login-with-google-btn">
+                Sign in with Google
+            </button>
+
+        </form>
+    </section>
+    <script>
+            function myFunction() {
+                document.getElementById("myForm").submit();
+            }
+    </script>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://apis.google.com/js/api.js"></script>
+</html>

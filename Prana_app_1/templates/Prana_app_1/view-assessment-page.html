@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CF Assessment Page</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1em;
+        }
+
+        section {
+            text-align: center;
+            margin: 50px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            margin: 10px;
+        }
+
+
+        button:hover {
+            background-color: #45a049;
+        }
+        section {
+            text-align: center;
+            margin: 50px;
+        }
+
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+
+    </style>
+</head>
+
+<body>
+{% include './headerHtml.html'%}
+    <header>
+        <h1>View Assessments</h1>
+    </header>
+    <section>
+        <form action="/Results" method="POST" id="myForm" align="left">
+        {% csrf_token %}
+        <table  align="center" border="1" align="left">
+            <thead>
+            <tr>
+                <th  align="center">Month</th>
+                <th  align="center">Score</th>
+                <th  align="center">Timestamp</th>
+            </tr>
+            </thead>
+        {% for row in assessment_list%}
+            <tbody>
+            <tr>
+                <td  align="center">{{row.month}}-{{row.year}}</td>
+                <td  align="center">{{row.score}}</td>
+                <td  align="center"> {{row.create_date}}</td>
+            </tr>
+        {%endfor%}
+            </tbody>
+        </table>
+    </section>
+    <section >
+        <table align="center"><tr><td>
+                    <canvas id="myChart" style="width:100%;max-width:600px" ></canvas>
+        </td></tr>
+        </table>
+    </section>
+        <script>
+        const xValues = []
+        {% for i in chart_x_axis %}
+            xValues.push("{{i}}");
+        {% endfor %}
+        const yValues = {{chart_y_axis}};
+        const barColors = ["red", "green","blue","orange","brown", "black", "red", "green","blue","orange","brown", "black"];
+
+
+        new Chart("myChart", {
+          type: "bar",
+          data: {
+            labels: xValues,
+            datasets: [{
+              backgroundColor: barColors,
+              data: yValues
+            }]
+          },
+          options: {
+            legend: {display: false},
+            title: {
+              display: true,
+              text: "Month wise Carbon Footprint"
+            }
+          }
+        });
+        </script>
+
+
+    <script>
+        function confirmCancel() {
+            var result = confirm("Are you sure?");
+            if (result) {
+                location.href = '';
+            }
+        }
+
+        function showSavePopup() {
+            alert("Valid for XX days");
+            location.href = '';
+        }
+    </script>
+
+</body>
+
+</html>
